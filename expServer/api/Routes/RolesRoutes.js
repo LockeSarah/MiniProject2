@@ -7,6 +7,7 @@ rolesRouter.get("/roles", async (req, res) => {
     try {
         const result = await pool.query("SELECT * FROM roles");
         res.json({ rows: result.rows });
+        console.log(result.rows);
     } catch (error) {
         console.error("Query error:", error);
         res.status(500).json({ error: "Database query failed" })
