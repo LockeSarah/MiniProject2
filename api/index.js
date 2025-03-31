@@ -2,10 +2,11 @@ import express from "express";
 import cors from "cors";
 import pg from "pg";
 import dotenv from "dotenv";
-import { rolesRouter } from "./api/Routes/RolesRoutes.js";
-import { usersRouter } from "./api/Routes/UsersRoutes.js";
-import { transRouter } from "./api/Routes/TransRoutes.js";
-import pool from "./api/Routes/PoolConnection.js";
+import rolesRouter from "./Routes/RolesRoutes.js";
+import usersRouter from "./Routes/UsersRoutes.js";
+import transRouter from "./Routes/TransRoutes.js";
+
+import pool from "./Routes/PoolConnection.js";
 
 const app=express();
 app.use(express.json()); // for parsing application/json
