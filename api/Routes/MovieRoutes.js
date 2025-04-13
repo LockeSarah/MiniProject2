@@ -3,7 +3,7 @@ export const movieRouter = express.Router();
 import pool from "./PoolConnection.js"
 
 // Display all movies
-movieRouter.get("/movies", async (req, res) => {
+movieRouter.get("/movie", async (req, res) => {
     try {
         const result = await pool.query("SELECT * FROM movies");
         res.json({ rows: result.rows });
