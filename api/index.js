@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 // app.use("/roles", rolesRouter);
 // app.use("/users", usersRouter);
-app.use("/browse", movieRouter);
+// app.use("/browse", movieRouter);
 
 app.get("/",(req,res)=>{
   try { res.send("Mini Project 2"); }
@@ -23,7 +23,7 @@ app.get("/",(req,res)=>{
   }
 });
 // Display all movies
-app.get("/movies", async (req, res) => {
+app.get("/movie", async (req, res) => {
   try {
       const result = await pool.query("SELECT * FROM movies");
       res.json({ rows: result.rows });
@@ -46,7 +46,7 @@ app.get("/getMovie", async (req, res) => {
 });
 
 // Delete specific movie
-app.get("/deleteMovie", async (req, res) => {
+app.delete("/deleteMovie", async (req, res) => {
   try {
       var id = req.query.id;
       console.log(id);
