@@ -27,16 +27,31 @@ movieRouter.get("/getMovie", async (req, res) => {
 });
 
 // Delete specific movie
-movieRouter.delete("/deleteMovie", async (req, res) => {
+movieRouter.get("/deleteMovie", async (req, res) => {
     try {
         var id = req.query.id;
         console.log(id);
-        const result = await pool.query("DELETE * FROM movie WHERE id =" + id);
+        const result = await pool.query("DELETE FROM movies WHERE id =" + id);
         console.log(result);
         res.json({ ans: 1 });
     } catch (error) {
         console.error("Query error:", error);
         res.json({ ans: 0});
+    }
+});
+
+// Add new movie
+movieRouter.post("/addMovie", async (req, res) => {
+    try {
+        const { title, director, producer, category_id } = req.body;
+        await pool.query(
+            "INSERT INTO movies (title, director, producer, category_id) VALUES ($1, $2, $3, $4)",
+            [title, director, producer, category_id]
+        );
+        res.json({ success: true });
+    } catch (error) {
+        console.error("Add error:", error);
+        res.status(500).json({ error: "Failed to add movie" });
     }
 });
 
