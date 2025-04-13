@@ -27,7 +27,7 @@ movieRouter.get("/getMovie", async (req, res) => {
 });
 
 // Delete specific movie
-movieRouter.get("/deleteMovie", async (req, res) => {
+movieRouter.delete("/deleteMovie", async (req, res) => {
     try {
         var id = req.query.id;
         console.log(id);
@@ -37,6 +37,22 @@ movieRouter.get("/deleteMovie", async (req, res) => {
     } catch (error) {
         console.error("Query error:", error);
         res.json({ ans: 0});
+    }
+});
+
+// Update specific movie
+movieRouter.put("/updateMovie", async (req, res) => {
+    try {
+        var id = req.query.id;
+        const { title, genre, release_year } = req.body;
+        const result = await pool.query(
+            "UPDATE movies SET title = $1, genre = $2, release_year = $3 WHERE id = $4",
+            [title, genre, release_year, id]
+        );
+        res.json({ ans: 1 });
+    } catch (error) {
+        console.error("Query error:", error);
+        res.json({ ans: 0 });
     }
 });
 
