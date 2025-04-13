@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 // app.use("/roles", rolesRouter);
 // app.use("/users", usersRouter);
-app.use("/movies", movieRouter);
+app.use("/browse", movieRouter);
 
 app.get("/",(req,res)=>{
   try { res.send("Mini Project 2"); }
